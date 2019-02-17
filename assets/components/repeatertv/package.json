@@ -1,0 +1,8 @@
+{
+  "name": "RepeaterTV",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "dependencies": {
+    "parse-form": "^4.0.5"
+  }
+}
