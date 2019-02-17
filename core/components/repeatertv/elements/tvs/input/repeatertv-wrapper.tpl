@@ -8,4 +8,4 @@
         {/foreach}
     </div>
 </form>
-<input type="hidden" class="repeatertv-value" id="tv{$tv->id}" name="tv{$tv->id}" value="{$tv->value}">
+<input type="hidden" class="repeatertv-value" id="tv{$tv->id}" name="tv{$tv->id}" value="{$tv->value|escape}">

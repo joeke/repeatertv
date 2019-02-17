@@ -15,7 +15,6 @@ switch ($modx->event->name) {
         );
         $modx->controller->addLexiconTopic('repeatertv:default');
         $modx->controller->addCss($assetsUrl . 'css/repeatertv.css');
-        $modx->controller->addJavascript('https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
-        $modx->controller->addJavascript($assetsUrl . 'js/repeatertv.js');
+        $modx->controller->addJavascript($assetsUrl . 'js/dist/repeatertv.min.js');
         break;
 }

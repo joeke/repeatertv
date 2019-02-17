@@ -1,3 +1,6 @@
+import { parse } from "parse-form";
+import Sortable from "sortablejs";
+
 var RepeaterTv = function () {
     "use strict";
     return {
@@ -20,19 +23,12 @@ var RepeaterTv = function () {
             });
         },
         updateItems: function (form) {
-            var itemsObj = [];
+            var itemsObj = parse(form);
             var tvId = form.dataset.tvId;
-            var items = form.querySelectorAll('.repeatertv-item');
-            for (var i = 0; i < items.length; i++) {
-                console.log(items[i]);
-                var subItems = items[i].getElementsByClassName('item-value');
-                var subItemObj = {};
-                for (var j = 0; j < subItems.length; j++) {
-                    subItemObj[subItems[j].dataset.key] = subItems[j]['value'];
-                }
-                itemsObj.push(subItemObj);
+
+            if (tvId && itemsObj.body['repeatertv-' + tvId]) {
+                this.setTVValue(tvId, itemsObj.body['repeatertv-' + tvId]);
             }
-            this.setTVValue(tvId, itemsObj);
         },
         addItem: function (event) {
             console.log('addItem');
@@ -43,7 +39,7 @@ var RepeaterTv = function () {
         /* Save wrapper items as json in hidden TV input field */
         setTVValue: function (tvId, data) {
             Ext.get('tv' + tvId).set({
-                value: Ext.encode(data)
+                value: JSON.stringify(data)
             });
         },
         /* Trigger the modx media browser */
