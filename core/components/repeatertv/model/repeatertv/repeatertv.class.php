@@ -1,9 +1,8 @@
 <?php
 class RepeaterTv
 {
-    public $modx = null;
+    public $modx;
     public $namespace = 'repeatertv';
-    public $cache = null;
     public $config = array();
 
     public function __construct(modX &$modx, array $config = array())

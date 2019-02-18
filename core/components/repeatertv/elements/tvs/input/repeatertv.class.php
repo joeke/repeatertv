@@ -36,6 +36,14 @@ class RepeaterTvInputRender extends modTemplateVarInputRender {
         $this->setPlaceholder('values', $decodedValues);
         $this->setPlaceholder('properties', $properties);
         $this->setPlaceholder('fieldNames', $fieldNames);
+        $this->setPlaceholder(
+            'core_path',
+            $this->modx->getOption(
+                'repeatertv.core_path',
+                null,
+                $this->modx->getOption('core_path') . 'components/repeatertv/'
+            )
+        );
     }
 
     /**

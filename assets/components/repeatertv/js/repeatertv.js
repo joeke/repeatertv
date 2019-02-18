@@ -1,5 +1,5 @@
-import { parse } from "parse-form";
 import Sortable from "sortablejs";
+var serialize = require('dom-form-serializer').serialize;
 
 var RepeaterTv = function () {
     "use strict";
@@ -15,7 +15,7 @@ var RepeaterTv = function () {
             Sortable.create(element, {
                 animation: 250,
                 ghostClass: 'repeatertv-item-placeholder',
-                onUpdate: function (event) {
+                onEnd: function (event) {
                     var repeaterId = event.from.id;
                     var form = document.getElementById(repeaterId + '-form');
                     RepeaterTv.updateItems(form);
@@ -23,11 +23,10 @@ var RepeaterTv = function () {
             });
         },
         updateItems: function (form) {
-            var itemsObj = parse(form);
+            var formValues = serialize(form);
             var tvId = form.dataset.tvId;
-
-            if (tvId && itemsObj.body['repeatertv-' + tvId]) {
-                this.setTVValue(tvId, itemsObj.body['repeatertv-' + tvId]);
+            if (tvId && formValues['repeatertv-' + tvId]) {
+                this.setTVValue(tvId, formValues['repeatertv-' + tvId]);
             }
         },
         addItem: function (event) {
